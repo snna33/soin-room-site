@@ -71,13 +71,13 @@ p{margin:0} h1,h2,h3{margin:0;font-weight:400}
   clip-path:polygon(25% 0,75% 0,75% 8%,88% 8%,88% 16%,92% 16%,92% 25%,100% 25%,100% 75%,92% 75%,92% 84%,88% 84%,88% 92%,75% 92%,75% 100%,25% 100%,25% 92%,12% 92%,12% 84%,8% 84%,8% 75%,0 75%,0 25%,8% 25%,8% 16%,12% 16%,12% 8%,25% 8%)}
 .touch.on{opacity:1;transform:scale(1);animation:blinkpx 1s steps(2) infinite}
 @keyframes blinkpx{50%{background:var(--cream)}}
-.swipe{position:relative;margin-top:6px;height:96px;display:grid;justify-items:center;gap:8px;pointer-events:none;transition:opacity .3s steps(3);animation:fade 1s ease 4s both}
+.swipe{position:relative;margin-top:-46px;display:grid;justify-items:center;gap:8px;pointer-events:none;transition:opacity .3s steps(3);animation:fade 1s ease 4s both}
 .swipe.gone{opacity:0}
-.swipe .hand{width:40px;height:48px;background:var(--fg);animation:swipe 1.8s steps(6) 4.4s infinite;filter:drop-shadow(3px 3px 0 rgba(0,0,0,.55));
-  clip-path:polygon(30% 0,50% 0,50% 33%,60% 33%,60% 25%,80% 25%,80% 33%,90% 33%,90% 42%,100% 42%,100% 83%,90% 83%,90% 100%,30% 100%,30% 92%,20% 92%,20% 83%,10% 83%,10% 67%,0 67%,0 50%,20% 50%,20% 58%,30% 58%)}
+.swipe .hand{width:32px;height:38px;animation:swipe 1.8s steps(6) 4.4s infinite;filter:drop-shadow(2px 0 0 #000) drop-shadow(-2px 0 0 #000) drop-shadow(0 2px 0 #000) drop-shadow(0 -2px 0 #000)}
+.swipe .hand i{display:block;width:100%;height:100%;background:var(--fg);clip-path:polygon(30% 0,50% 0,50% 33%,60% 33%,60% 25%,80% 25%,80% 33%,90% 33%,90% 42%,100% 42%,100% 83%,90% 83%,90% 100%,30% 100%,30% 92%,20% 92%,20% 83%,10% 83%,10% 67%,0 67%,0 50%,20% 50%,20% 58%,30% 58%)}
 .swipe .arr{display:flex;gap:46px;font-family:var(--f-pix-en);font-size:12px;color:var(--fg);text-shadow:2px 2px 0 rgba(0,0,0,.6)}
 .swipe .lbl{white-space:nowrap;font-family:var(--f-pix-ko);font-size:13px;color:var(--bg);background:var(--green);padding:4px 10px}
-@keyframes swipe{0%,100%{transform:translateX(-22px)}50%{transform:translateX(22px)}}
+@keyframes swipe{0%,100%{transform:translateX(-18px)}50%{transform:translateX(18px)}}
 .now{display:grid;justify-items:center;width:100%;gap:2px;text-align:center;margin-top:2px}
 .now .no{font-family:var(--f-pix-en);font-size:11px;color:var(--muted)}
 .now .nm{font-family:var(--f-pix-ko);font-weight:700;font-size:20px}
@@ -194,7 +194,7 @@ footer{border-top:1px solid var(--line);padding-block:26px 40px;font-size:12px;c
         <div class="fallback" id="fallback" hidden><p style="color:var(--muted);font-size:14px">이 기기에서는 3D 방을 불러오지 못했습니다.</p></div>
         <span class="touch" id="touch" aria-hidden="true">CLICK</span>
       </div>
-      <div class="swipe" id="swipe" aria-hidden="true"><div class="arr"><span>◀</span><span>▶</span></div><div class="hand"></div><span class="lbl">밀어서 방 둘러보기</span></div>
+      <div class="swipe" id="swipe" aria-hidden="true"><div class="hand"><i></i></div><span class="lbl">밀어서 방 둘러보기</span></div>
     </div>
   </section>
 
