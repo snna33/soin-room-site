@@ -161,6 +161,14 @@ p{margin:0} h1,h2,h3{margin:0;font-weight:400}
 .btn:focus-visible,.ig:focus-visible{outline:2px solid var(--cream);outline-offset:6px}
 .ig{color:var(--bg);font-weight:700}
 .kitline{border-top:4px dotted color-mix(in srgb,var(--bg) 35%,var(--green));padding-top:14px;font-size:15px;font-weight:700}
+.contact{margin-top:56px;display:grid;gap:12px}
+.contact .tag{font-family:var(--f-pix-en);font-size:11px;color:var(--green)}
+.contact p{font-size:15px;color:#d3dccd}
+.dm{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 18px;border:1px solid var(--line);color:var(--fg);text-decoration:none;transition:border-color .2s steps(2)}
+.dm span{font-weight:700;font-size:15px}
+.dm b{font-family:var(--f-pix-en);font-weight:400;font-size:11px;color:var(--green);white-space:nowrap}
+.dm:hover,.dm:active{border-color:var(--green)}
+.dm:focus-visible{outline:2px solid var(--green);outline-offset:3px}
 footer{border-top:1px solid var(--line);padding-block:26px 40px;font-size:12px;color:var(--muted);text-align:center}
 
 @media (prefers-reduced-motion:reduce){
@@ -243,6 +251,11 @@ footer{border-top:1px solid var(--line);padding-block:26px 40px;font-size:12px;c
         <a class="btn pxb" href="https://forms.gle/hcANFJKf2uCktaZm8" target="_blank" rel="noopener">설문 남기기</a>
         <p class="kitline">아트 키트는 감정 기록을 남긴 분께 한 세트씩, 50세트 한정으로 나눠 드립니다.</p>
         <p style="font-size:14px">사진을 올릴 땐 <a class="ig" href="https://www.instagram.com/soin.is.here/" target="_blank" rel="noopener">@soin.is.here</a>를 태그해 주시기 바랍니다.</p>
+      </div>
+      <div class="contact rv">
+        <p class="tag">CONTACT</p>
+        <p>전시나 작업에 대해 궁금한 점이 있으시면 편하게 연락 주시기 바랍니다.</p>
+        <a class="dm" href="https://ig.me/m/soin.is.here" target="_blank" rel="noopener"><span>인스타그램 DM 보내기</span><b>@soin.is.here →</b></a>
       </div>
     </div>
   </section>
