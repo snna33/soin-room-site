@@ -71,7 +71,7 @@ p{margin:0} h1,h2,h3{margin:0;font-weight:400}
   clip-path:polygon(25% 0,75% 0,75% 8%,88% 8%,88% 16%,92% 16%,92% 25%,100% 25%,100% 75%,92% 75%,92% 84%,88% 84%,88% 92%,75% 92%,75% 100%,25% 100%,25% 92%,12% 92%,12% 84%,8% 84%,8% 75%,0 75%,0 25%,8% 25%,8% 16%,12% 16%,12% 8%,25% 8%)}
 .touch.on{opacity:1;transform:scale(1);animation:blinkpx 1s steps(2) infinite}
 @keyframes blinkpx{50%{background:var(--cream)}}
-.swipe{position:absolute;left:50%;top:58%;transform:translate(-50%,-50%);z-index:3;display:grid;justify-items:center;gap:8px;pointer-events:none;transition:opacity .3s steps(3);animation:fade 1s ease 4s both}
+.swipe{position:relative;margin-top:6px;height:96px;display:grid;justify-items:center;gap:8px;pointer-events:none;transition:opacity .3s steps(3);animation:fade 1s ease 4s both}
 .swipe.gone{opacity:0}
 .swipe .hand{width:40px;height:48px;background:var(--fg);animation:swipe 1.8s steps(6) 4.4s infinite;filter:drop-shadow(3px 3px 0 rgba(0,0,0,.55));
   clip-path:polygon(30% 0,50% 0,50% 33%,60% 33%,60% 25%,80% 25%,80% 33%,90% 33%,90% 42%,100% 42%,100% 83%,90% 83%,90% 100%,30% 100%,30% 92%,20% 92%,20% 83%,10% 83%,10% 67%,0 67%,0 50%,20% 50%,20% 58%,30% 58%)}
@@ -108,11 +108,16 @@ p{margin:0} h1,h2,h3{margin:0;font-weight:400}
 
 /* ABOUT */
 .soin{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center}
-.soin b{font-family:var(--f-pix-en);font-size:42px;font-weight:400;line-height:1;color:var(--green)}
+.soin b{font-family:"Bagel Fat One",var(--f-ko);font-size:46px;font-weight:400;line-height:1;color:var(--green)}
 .soin p{font-size:15px;color:#d3dccd}
 .layers{list-style:none;padding:0;margin:32px 0 0;display:grid;gap:10px}
 .layers li{display:grid;grid-template-columns:44px 1fr;padding:14px 14px;background:var(--bg2);font-family:var(--f-pix-ko);font-size:16px;align-items:center}
 .layers i{font-style:normal;font-family:var(--f-pix-en);font-size:14px;color:var(--green)}
+.kw{list-style:none;padding:0;margin:34px 0 0;display:grid;gap:4px}
+.kw li{display:flex;align-items:baseline;gap:14px;font-family:"Bagel Fat One",var(--f-ko);font-size:clamp(34px,10vw,52px);line-height:1.25;color:#2f3138;transition:color .35s steps(3),transform .35s steps(3)}
+.kw li i{font-style:normal;font-family:var(--f-pix-en);font-size:11px;color:#3d3f47;transition:color .35s steps(3)}
+.kw li.on{color:var(--green);transform:translateX(6px)}
+.kw li.on i{color:var(--green)}
 .three{margin-top:30px;display:grid;gap:12px}
 .three p{font-size:15.5px;color:#d3dccd}
 .pills{display:flex;flex-wrap:wrap;gap:8px}
@@ -161,6 +166,7 @@ footer{border-top:1px solid var(--line);padding-block:26px 40px;font-size:12px;c
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .lines span,.title,.stage,.marq div,.touch.on,.swipe,.swipe .hand{animation:none}
+  .kw li{transition:none}
   .big .w i,.rv{transition:none}
   .big .w i{transform:none}.rv{opacity:1;transform:none}
 }
@@ -179,8 +185,8 @@ footer{border-top:1px solid var(--line);padding-block:26px 40px;font-size:12px;c
       <div class="stage" id="stage" aria-label="손가락으로 끌어 돌려 보는 3D 자성의 방">
         <div class="fallback" id="fallback" hidden><p style="color:var(--muted);font-size:14px">이 기기에서는 3D 방을 불러오지 못했습니다.</p></div>
         <span class="touch" id="touch" aria-hidden="true">CLICK</span>
-        <div class="swipe" id="swipe" aria-hidden="true"><div class="arr"><span>◀</span><span>▶</span></div><div class="hand"></div><span class="lbl">밀어서 방 둘러보기</span></div>
       </div>
+      <div class="swipe" id="swipe" aria-hidden="true"><div class="arr"><span>◀</span><span>▶</span></div><div class="hand"></div><span class="lbl">밀어서 방 둘러보기</span></div>
     </div>
   </section>
 
@@ -200,10 +206,13 @@ footer{border-top:1px solid var(--line);padding-block:26px 40px;font-size:12px;c
     <div class="in">
       <h2 class="big" data-split aria-label="About">ABOUT</h2>
       <div class="soin rv"><b>Soin</b><p>프랑스어로 '돌봄, 세심한 주의'. 말수는 적지만 주변을 섬세하게 살피는 캐릭터입니다. 각 방에서 그 감정을 지나는 사람의 자리에 조용히 서 있습니다.</p></div>
-      <div class="three rv">
-        <p>소앙의 방은 세 겹의 방입니다.</p>
-        <div class="pills"><span>그림 속의 방</span><span>혼자 돌아가는 자취방</span><span>나를 마주하는 마음의 방</span></div>
-      </div>
+      <ul class="kw" aria-label="소앙의 방 키워드">
+        <li><i>01</i>돌봄</li>
+        <li><i>02</i>감정</li>
+        <li><i>03</i>마음의 방</li>
+        <li><i>04</i>머무름</li>
+        <li><i>05</i>위로</li>
+      </ul>
       <div class="txt rv"><p>천장 없이 비스듬히 내려다보는 아이소메트릭 시점은 방 안을 들여다보게 하지만, 한 사람의 마음을 지나치게 드러내지는 않습니다. 모든 방은 한 픽셀씩 직접 찍어 완성했습니다.</p></div>
       <div class="artist rv"><p class="tag">ARTIST</p><h3>임선아 <small>Lim Seona</small></h3>
         <p>일상 속 포착하기 어려운 감정의 결을 시각 언어로 풀어내는 그래픽 아티스트입니다. 프랑스 캉브레 국립고등미술학교(ESAC Cambrai)에서 커뮤니케이션 디자인을 전공했습니다. 혼자 타 지역에서 살아가며 느낀 감정에서 소앙 프로젝트를 시작했습니다.</p>
@@ -429,6 +438,13 @@ stage.addEventListener("pointerdown",e=>{$("swipe").classList.add("gone");draggi
 stage.addEventListener("pointermove",e=>{if(!dragging)return;place(e);tAzim=Math.max(8,Math.min(82,sA-(e.clientX-sx)*.3));tElev=Math.max(18,Math.min(55,sE+(e.clientY-sy)*.15))});
 function endDrag(){dragging=false;touch.classList.remove("on");stage.classList.remove("drag")}
 stage.addEventListener("pointerup",endDrag);stage.addEventListener("pointercancel",endDrag);
+
+/* 키워드: 화면 가운데를 지날 때 하나씩 켜짐 */
+(function(){const items=[...document.querySelectorAll(".kw li")];if(!items.length)return;
+  if(reduce||!("IntersectionObserver" in window)){items.forEach(li=>li.classList.add("on"));return}
+  const io=new IntersectionObserver(es=>es.forEach(e=>{const li=e.target;
+    if(e.isIntersecting)li.classList.add("on");else if(e.boundingClientRect.top>0)li.classList.remove("on")}),{rootMargin:"-38% 0px -45% 0px"});
+  items.forEach(li=>io.observe(li))})();
 
 /* 주소 복사 */
 $("copyAddr").onclick=async()=>{const t=$("addr").textContent,b=$("copyAddr");
