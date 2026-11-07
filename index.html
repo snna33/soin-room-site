@@ -97,8 +97,10 @@ p{margin:0} h1,h2,h3{margin:0;font-weight:400}
 .rv{opacity:0;transform:translateY(24px);transition:opacity .7s steps(5,end),transform .7s steps(5,end)}
 .rv.on{opacity:1;transform:none}
 .lead{font-family:var(--f-pix-ko);font-size:19px;line-height:1.8}
-.lead em{font-style:normal;padding:0 4px;color:var(--fg);background:linear-gradient(var(--green),var(--green)) no-repeat 0 0/0% 100%;transition:background-size .9s steps(9,end) .5s,color .2s steps(1) .95s}
+.rv em{font-style:normal;padding:0 3px;color:var(--fg);-webkit-box-decoration-break:clone;box-decoration-break:clone;background:linear-gradient(var(--green),var(--green)) no-repeat 0 0/0% 100%;transition:background-size .9s steps(9,end) .5s,color .2s steps(1) .95s}
 .rv.on em{background-size:100% 100%;color:var(--bg)}
+.rv p+p em,.rv em+em{transition-delay:1s,1.45s}
+.cta em{background:none;color:inherit}
 .txt{display:grid;gap:14px;margin-top:22px;color:#d3dccd;font-size:15.5px}
 
 .marq{margin:46px 0 0;overflow:hidden;border-block:1px solid var(--line);padding-block:12px;white-space:nowrap}
@@ -207,10 +209,10 @@ footer{border-top:1px solid var(--line);padding-block:26px 40px;font-size:12px;c
   <section class="ch" id="exhibition">
     <div class="in">
       <h2 class="big" data-split aria-label="Exhibition">EXHIBITION</h2>
-      <p class="lead rv">〈소앙의 방〉은 사람의 마음속 감정을 <em>여러 방</em>으로 그려낸 픽셀아트 연작입니다.</p>
+      <p class="lead rv">〈소앙의 방〉은 <em>사람의 마음속 감정</em>을 여러 방으로 그려낸 픽셀아트 연작입니다.</p>
       <div class="txt rv">
-        <p>그리움, 불면, 기다림, 막막함, 용기처럼 누구나 지나지만 쉽게 꺼내 놓지 못하는 감정들이 다락방, 주방, 엘리베이터, 현관 같은 일상의 공간 안에 놓여 있습니다.</p>
-        <p>2025년 단체전에서 처음 선보인 네 개의 방에 올해 새로 지은 열 개의 방을 더해, 모두 열네 개의 방을 소개합니다.</p>
+        <p>그리움, 불면, 기다림, 막막함, 용기처럼 누구나 지나지만 <em>쉽게 꺼내 놓지 못하는 감정들</em>이 다락방, 주방, 엘리베이터, 현관 같은 일상의 공간 안에 놓여 있습니다.</p>
+        <p>2025년 단체전에서 처음 선보인 네 개의 방에 올해 새로 지은 열 개의 방을 더해, 모두 <em>열네 개의 방</em>을 소개합니다.</p>
       </div>
     </div>
     <div class="marq" aria-hidden="true"><div id="marq"></div></div>
@@ -219,8 +221,8 @@ footer{border-top:1px solid var(--line);padding-block:26px 40px;font-size:12px;c
   <section class="ch" id="about">
     <div class="in">
       <h2 class="big" data-split aria-label="About">ABOUT</h2>
-      <div class="soin rv"><b>Soin</b><p>프랑스어로 '돌봄, 세심한 주의'. 말수는 적지만 주변을 섬세하게 살피는 캐릭터입니다. 각 방에서 그 감정을 지나는 사람의 자리에 조용히 서 있습니다.</p></div>
-      <div class="txt rv"><p>천장 없이 비스듬히 내려다보는 아이소메트릭 시점은 방 안을 들여다보게 하지만, 한 사람의 마음을 지나치게 드러내지는 않습니다. 모든 방은 한 픽셀씩 직접 찍어 완성했습니다.</p></div>
+      <div class="soin rv"><b>Soin</b><p>프랑스어로 <em>'돌봄, 세심한 주의'</em>. 말수는 적지만 주변을 섬세하게 살피는 캐릭터입니다. 각 방에서 그 감정을 지나는 사람의 자리에 조용히 서 있습니다.</p></div>
+      <div class="txt rv"><p>천장 없이 비스듬히 내려다보는 아이소메트릭 시점은 방 안을 들여다보게 하지만, 한 사람의 마음을 지나치게 드러내지는 않습니다. 모든 방은 <em>한 픽셀씩 직접 찍어</em> 완성했습니다.</p></div>
       <div class="artist rv"><p class="tag">ARTIST</p><h3>임선아 <small>Lim Seona</small></h3>
         <p>감정을 시각 언어로 풀어내는 그래픽 아티스트입니다. 프랑스 ESAC Cambrai에서 커뮤니케이션 디자인을 전공했습니다.</p>
       </div>
