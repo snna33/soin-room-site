@@ -31,7 +31,7 @@
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 html{scroll-behavior:smooth;scroll-padding-top:calc(52px + env(safe-area-inset-top,0px))}
-body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.75;overflow-x:hidden}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.75;overflow-x:hidden;word-break:keep-all;overflow-wrap:break-word}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
 .in{max-width:540px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
 p{margin:0} h1,h2,h3{margin:0;font-weight:400}
@@ -88,6 +88,8 @@ p{margin:0} h1,h2,h3{margin:0;font-weight:400}
 
 /* ── 공통 장 ── */
 .ch{padding-block:80px 72px;border-top:1px solid var(--line)}
+#exhibition{padding-bottom:0}
+#about{padding-top:28px;border-top:0}
 .big{font-family:var(--f-pix-en);font-size:clamp(34px,10.8vw,62px);line-height:1;color:var(--green);margin:0 0 32px;white-space:nowrap;text-align:right}
 .big .w{display:inline-block;overflow:hidden;vertical-align:top;padding-right:4px;padding-bottom:4px}
 .big .w i{display:inline-block;font-style:normal;transform:translateY(110%);transition:transform .6s steps(4,end);transition-delay:calc(var(--k)*.05s)}
@@ -95,10 +97,11 @@ p{margin:0} h1,h2,h3{margin:0;font-weight:400}
 .rv{opacity:0;transform:translateY(24px);transition:opacity .7s steps(5,end),transform .7s steps(5,end)}
 .rv.on{opacity:1;transform:none}
 .lead{font-family:var(--f-pix-ko);font-size:19px;line-height:1.8}
-.lead em{font-style:normal;color:var(--bg);background:var(--green);padding:0 4px}
+.lead em{font-style:normal;padding:0 4px;color:var(--fg);background:linear-gradient(var(--green),var(--green)) no-repeat 0 0/0% 100%;transition:background-size .9s steps(9,end) .5s,color .2s steps(1) .95s}
+.rv.on em{background-size:100% 100%;color:var(--bg)}
 .txt{display:grid;gap:14px;margin-top:22px;color:#d3dccd;font-size:15.5px}
 
-.marq{margin:46px 0 40px;overflow:hidden;border-block:1px solid var(--line);padding-block:12px;white-space:nowrap}
+.marq{margin:46px 0 0;overflow:hidden;border-block:1px solid var(--line);padding-block:12px;white-space:nowrap}
 .marq div{display:inline-block;animation:mq 38s linear infinite;font-family:var(--f-pix-ko);font-size:20px;color:var(--muted)}
 .marq span{margin-right:26px}.marq b{font-family:var(--f-pix-en);font-weight:400;margin-right:6px;color:var(--green)}
 @keyframes mq{to{transform:translateX(-50%)}}
@@ -365,6 +368,40 @@ let azim=45,elev=32,tAzim=45,tElev=32;
   const rug=new THREE.Mesh(new THREE.CylinderGeometry(1.6,1.6,.06,10),M("#f3e8d4"));rug.scale.set(1.2,1,1);rug.position.set(1.9,.04,1.9);room.add(rug);
   [[1.2,1.4],[2.4,2.4],[2.1,1.1],[1.4,2.6],[2.9,1.7]].forEach(([x,z])=>box(.22,.07,.22,"#e5a39a",x,.06,z,room));
 
+  // ── 소품 더하기 ──
+  // 침대 옆 협탁 + 알람시계 + 머그
+  const nt=new THREE.Group();nt.position.set(1.55,0,-R/2+.7);room.add(nt);
+  box(1,1.1,.9,"#d9b27a",0,.55,0,nt);box(.9,.06,.06,"#a98552",0,.75,.46,nt);
+  box(.42,.36,.22,"#e86a5a",-.18,1.3,0,nt);box(.3,.24,.04,"#f6f1e4",-.18,1.32,.12,nt);
+  box(.22,.26,.22,"#f6f1e4",.25,1.25,.1,nt);
+  // 왼쪽 벽 책장 (침대 머리 쪽)
+  const bc=new THREE.Group();bc.position.set(-R/2+.45,0,-3.75);room.add(bc);
+  box(.12,2.6,1.6,"#8a5a32",-.34,1.3,0,bc);box(.8,2.6,.12,"#a7743f",0,1.3,-.8,bc);box(.8,2.6,.12,"#a7743f",0,1.3,.8,bc);box(.8,.12,1.6,"#a7743f",0,2.6,0,bc);
+  [.55,1.35,2.15].forEach(y=>{box(.74,.08,1.5,"#8a5a32",.04,y-.38,0,bc);
+    ["#e3b14b","#7b9fd0","#d86f5b","#9cc27b","#f0e1b3"].forEach((c,i)=>box(.5,.55+(i%3)*.08,.2,c,.08,y-.05+(i%3)*.04,-.55+i*.26,bc))});
+  // 벽시계 (왼쪽 벽)
+  const clk=new THREE.Mesh(new THREE.CylinderGeometry(.45,.45,.1,12),[M("#8a5a32"),M("#f6f1e4"),M("#8a5a32")]);clk.rotation.z=Math.PI/2;clk.position.set(-R/2+.07,5.9,-1.4);room.add(clk);
+  box(.04,.3,.06,"#253021",-R/2+.14,5.98,-1.4,room);box(.04,.06,.22,"#253021",-R/2+.14,5.9,-1.32,room);
+  // 달력 (왼쪽 벽)
+  box(.08,.9,.7,"#f6f1e4",-R/2+.06,4.3,-.25,room);box(.1,.22,.7,"#7fc08a",-R/2+.07,4.64,-.25,room);
+  // 책상 위: 머그, 연필꽂이, 책 더미
+  box(.24,.28,.24,"#7fc08a",.45,2.43,-.15,desk);
+  box(.24,.32,.24,"#d86f5b",.55,2.45,.95,desk);[["#e3b14b",.6],["#253021",.68]].forEach(([c,y])=>box(.04,.3,.04,c,.5,2.5+(y-.6),.92,desk));
+  box(.55,.12,.75,"#7b9fd0",-.45,2.35,.85,desk);box(.5,.1,.7,"#f0e1b3",-.45,2.46,.85,desk);
+  // 침대 발치 슬리퍼
+  box(.28,.1,.5,"#9cc27b",-.6,.06,-.35,room);box(.28,.1,.5,"#9cc27b",-.15,.06,-.3,room);
+  // 초록 방석 + 펼친 책
+  box(1.3,.35,1.3,"#7fc08a",3.75,.18,.5,room);box(1.1,.08,1.1,"#a6d8a6",3.75,.39,.5,room);
+  box(.7,.06,.5,"#f6f1e4",2.9,.05,3.5,room);box(.06,.07,.5,"#d86f5b",2.9,.06,3.5,room);
+  // 바닥 책 더미
+  [["#d86f5b",0],["#7b9fd0",1],["#e3b14b",2]].forEach(([c,i])=>box(.75-i*.06,.18,.55,c,4.2,.09+i*.18,3.7,room));
+  // 서랍장 옆 선인장 화분
+  box(.5,.45,.5,"#c98e5a",4.4,.23,-2.55,room);box(.28,.7,.28,"#4f9a45",4.4,.8,-2.55,room);box(.14,.28,.14,"#4f9a45",4.58,.85,-2.55,room);
+  // 줄전구 (뒤 벽, 왼쪽 벽 위쪽)
+  const bulbs=[];const bc2=["#ffe08a","#bff0a0","#ffc2c2"];
+  for(let i=0;i<11;i++){const x=-4.6+i*.92,y=6.75-Math.sin(i/10*Math.PI)*.35;const b=box(.18,.22,.12,new THREE.MeshLambertMaterial({color:bc2[i%3],emissive:new THREE.Color(bc2[i%3]).multiplyScalar(.55)}),x,y,-R/2+.12,room);bulbs.push(b)}
+  for(let i=0;i<8;i++){const z=-4.4+i*.95,y=6.75-Math.sin(i/7*Math.PI)*.3;const b=box(.12,.22,.18,new THREE.MeshLambertMaterial({color:bc2[(i+1)%3],emissive:new THREE.Color(bc2[(i+1)%3]).multiplyScalar(.55)}),-R/2+.12,y,z,room);bulbs.push(b)}
+
   // 빛
   scene.add(new THREE.AmbientLight(0xffffff,.55));
   const sun=new THREE.DirectionalLight(0xfff4dc,.6);scene.add(sun);
@@ -382,6 +419,7 @@ let azim=45,elev=32,tAzim=45,tElev=32;
     sun.position.set(Math.cos(a+1)*10,14,Math.sin(a+1)*10); // 돌리면 햇빛 방향도 바뀜
     head.rotation.y=(azim-45)*Math.PI/180*.8; // 소앙이 고개를 돌림
     shade.material.emissive.setHSL(.12,.7,.18+.06*Math.sin(t/40));
+    if(!reduce&&t%30===0)bulbs.forEach((b,k)=>{const on=((k+Math.floor(t/30))%3)!==0;b.material.emissiveIntensity=on?1:.25});
     renderer.render(scene,cam);requestAnimationFrame(loop)})();
 })();
 
